@@ -12,5 +12,6 @@ spec:
   set:
     nfs.server: $nfsServer
     nfs.path: $nfsPath
-    storageClass.name: nfs
-    storageClass.reclaimPolicy: $reclaimPolicy"
+    storageClass.name: $storageClassName
+    storageClass.reclaimPolicy: $reclaimPolicy
+    storageClass.provisionerName: $provisionerName"
