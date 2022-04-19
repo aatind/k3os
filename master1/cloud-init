@@ -22,7 +22,7 @@ write_files:
     export NFS_SERVER=192.168.32.32
     export NFS_PATH=/mnt/Z2/Kubernetes-state/k3s-public
     export RECLAIM_POLICY=Retain
-    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS.yaml | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} > /var/lib/rancher/k3s/server/manifests/NFS.yaml
+    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} > /var/lib/rancher/k3s/server/manifests/NFS.yaml
 
   owner: root
   path: /etc/initial-setup.sh
