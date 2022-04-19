@@ -13,6 +13,7 @@ write_files:
     export INTERFACE=eth0
     mkdir -p '/var/lib/rancher/k3s/server/manifests/'
     curl https://kube-vip.io/manifests/rbac.yaml > /var/lib/rancher/k3s/server/manifests/kube-vip-rbac.yaml
+    curl 
     curl -sL kube-vip.io/k3s |  vipAddress=${RKE2_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
 
   owner: root
