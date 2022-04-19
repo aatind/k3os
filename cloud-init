@@ -3,6 +3,7 @@ ssh_authorized_keys:
 hostname: k3os-public-master1
 boot_cmd:
 - mkdir -p /var/lib/nfs/sm
+- mkdir -p /var/lib/rancher/k3s/server/manifests
 - rc-update add rpc.statd
 - rc-update add nfs
 write_files:
