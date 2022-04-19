@@ -6,7 +6,7 @@ boot_cmd:
 - rc-update add rpc.statd
 - rc-update add nfs
 write_files:
-- path /var/lib/rancher/k3s/server/manifests/vip.yaml
+- path: /var/lib/rancher/k3s/server/manifests/vip.yaml
   content: |-
    apiVersion: apps/v1
    kind: DaemonSet
