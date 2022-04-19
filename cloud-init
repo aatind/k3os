@@ -27,4 +27,5 @@ k3os:
     - server
     - --cluster-init
     - --tls-san=k3s-public.systechit.local
+    - --tls-san=192.168.31.90
     - --flannel-backend=vxlan
