@@ -1,4 +1,6 @@
-apiVersion: helm.cattle.io/v1
+#!/bin/bash
+
+echo "apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
   name: nfs-provisioner
@@ -11,4 +13,4 @@ spec:
     nfs.server: $nfsServer
     nfs.path: $nfsPath
     storageClass.name: nfs
-    storageClass.reclaimPolicy: $reclaimPolicy
+    storageClass.reclaimPolicy: $reclaimPolicy"
