@@ -9,7 +9,7 @@ boot_cmd:
 - rc-update add nfs
 
 k3os:
-  token: K1035140a236362aca2b3ef337ebe0a07700a04e0fb2b1056d2ea5be1fcd472d663::server:b7077c788ba76b303fbacbd1a523c37a
+  token: K10cbcf839adbda5a81fac8d6e331e3eba3d2de2edacdbba6540d0091e17bb68919::server:98490f69396c1f6defcb0d2930b56880
 
   k3sArgs:
     - server
