@@ -1,7 +1,7 @@
 ssh_authorized_keys:
 - github:aatind
 write_files:
-- path: /var/lib/connman/default.config
+- path: /var/lib/connman/eth0.config
   content: |-
     [service_eth0]
     Type=ethernet
@@ -10,7 +10,9 @@ write_files:
     Nameservers=192.168.31.1
     SearchDomains=systechit.local
     Domain=systechit.local
-    TimeServers=192.168.31.1    
+    TimeServers=192.168.31.1 
+- path: /var/lib/connman/eth1.config
+  content: |-   
     [service_eth1]
     Type=ethernet
     IPv4=192.168.32.80/255.255.255.0
