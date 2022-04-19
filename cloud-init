@@ -1,6 +1,6 @@
 ssh_authorized_keys:
 - github:aatind
-hostname: k3os-public-master
+hostname: k3os-public-master1
 boot_cmd:
 - mkdir -p /var/lib/nfs/sm
 - rc-update add rpc.statd
@@ -11,5 +11,5 @@ k3os:
   k3sArgs:
     - server
     - --cluster-init
-    - --tls-san=k3s-public-services.systechit.local
+    - --tls-san=k3s-public-master1.systechit.local
     - --flannel-backend=vxlan
