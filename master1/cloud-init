@@ -9,21 +9,26 @@ write_files:
 - encoding: ""
   content: |-
     #!/bin/bash
-    export RKE2_VIP_IP=192.168.31.90
+
+    mkdir -p '/var/lib/rancher/k3s/server/manifests/'
+
+    #Kube-vip configuration
+    export K3S_VIP_IP=192.168.31.90
     export INTERFACE=eth0
+    curl -sL https://kube-vip.io/manifests/rbac.yaml > /var/lib/rancher/k3s/server/manifests/kube-vip-rbac.yaml
+    curl -sL kube-vip.io/k3s |  vipAddress=${K3S_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
+   
+    #NFS provisioner
     export NFS_SERVER=192.168.32.32
     export NFS_PATH=/mnt/Z2/Kubernetes-state/k3s-public
     export RECLAIM_POLICY=Retain
-    mkdir -p '/var/lib/rancher/k3s/server/manifests/'
-    curl -sL https://kube-vip.io/manifests/rbac.yaml > /var/lib/rancher/k3s/server/manifests/kube-vip-rbac.yaml
     curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS.yaml | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} > /var/lib/rancher/k3s/server/manifests/NFS.yaml
-    curl -sL kube-vip.io/k3s |  vipAddress=${RKE2_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
 
   owner: root
-  path: /etc/kubevip.sh
+  path: /etc/initial-setup.sh
   permissions: '0755'
 run_cmd:
-- "sh /etc/kubevip.sh"
+- "sh /etc/initial-setup.sh"
 
 k3os:
   
