@@ -28,7 +28,7 @@ write_files:
     
     #NFS provisioner - SSD
     export NFS_SERVER=192.168.32.32
-    export NFS_PATH=/mnt/Flash-Z1/Kubernetes-state
+    export NFS_PATH=/mnt/Flash-Z1/Kubernetes-state/k3s-public
     export RECLAIM_POLICY=Retain
     export PROVISIONER_NAME=NFS-ssd
     export STORAGE_CLASS_NAME=NFS-ssd
