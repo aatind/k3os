@@ -1,5 +1,5 @@
 ssh_authorized_keys:
-- github: aatind
+- github:aatind
 hostname: k3os-public-master1
 boot_cmd:
 - mkdir -p /var/lib/nfs/sm
