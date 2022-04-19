@@ -1,6 +1,6 @@
 ssh_authorized_keys:
 - github:aatind
-hostname: k3os-public-master1
+hostname: k3os-public-master11
 boot_cmd:
 - mkdir -p /var/lib/nfs/sm
 - mkdir -p /var/lib/rancher/k3s/server/manifests
