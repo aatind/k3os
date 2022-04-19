@@ -1,0 +1,17 @@
+# worker1 configuration:
+
+ssh_authorized_keys:
+- github:aatind
+hostname: k3os-public-worker1
+boot_cmd:
+- mkdir -p /var/lib/nfs/sm
+- rc-update add rpc.statd
+- rc-update add nfs
+
+k3os:
+  token: K1035140a236362aca2b3ef337ebe0a07700a04e0fb2b1056d2ea5be1fcd472d663::server:b7077c788ba76b303fbacbd1a523c37a
+
+  k3sArgs:
+    - agent
+  server_url: https://k3os-public.systechit.local:6443
+
