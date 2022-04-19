@@ -9,9 +9,8 @@ boot_cmd:
 - rc-update add nfs
 
 k3os:
-  token: K10399f2f36ad33bc014914227b695e86b5ebf7e14aa323fafa398ce0a2ff31eea3::server:1794e2a6b1838a135ff339eafe4b1b3c
 
   k3sArgs:
     - agent
-    - https://k3s-public.systechit.local:6443
-
+    --server https://k3s-public.systechit.local:6443
+    --token K10399f2f36ad33bc014914227b695e86b5ebf7e14aa323fafa398ce0a2ff31eea3::server:1794e2a6b1838a135ff339eafe4b1b3c
