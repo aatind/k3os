@@ -13,5 +13,5 @@ k3os:
 
   k3sArgs:
     - agent
-  server_url: https://k3os-public.systechit.local:6443
+    - https://k3s-public.systechit.local:6443
 

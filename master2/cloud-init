@@ -14,5 +14,4 @@ k3os:
   k3sArgs:
     - server
     - --server
-    - https://k3os-public.systechit.local:6443
-
+    - https://k3s-public.systechit.local:6443
