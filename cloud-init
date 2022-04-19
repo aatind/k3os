@@ -1,0 +1,30 @@
+ssh_authorized_keys:
+- github:aatind
+write_files:
+- path: /var/lib/connman/default.config
+  content: |-
+    [service_eth0]
+    Type=ethernet
+    IPv4=192.168.31.80/255.255.255.0/192.168.31.1
+    IPv6=off
+    Nameservers=192.168.31.1
+    SearchDomains=systechit.local
+    Domain=systechit.local
+    TimeServers=192.168.31.1    
+    [service_eth1]
+    Type=ethernet
+    IPv4=192.168.32.80/255.255.255.0
+    IPv6=off
+hostname: k3os-public-master
+boot_cmd:
+- mkdir -p /var/lib/nfs/sm
+- rc-update add rpc.statd
+- rc-update add nfs
+
+k3os:
+  
+  k3sArgs:
+    - server
+    - --cluster-init
+    - --tls-san=k3s-public-services.systechit.local
+    - --flannel-backend=vxlan
