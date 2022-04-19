@@ -12,7 +12,7 @@ write_files:
     export RKE2_VIP_IP=192.168.31.90
     export INTERFACE=eth0
     mkdir -p '/var/lib/rancher/k3s/server/manifests/'
-    curl -sL kube-vip.io/k3s |  vipAddress=${RKE2_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/rke2/server/manifests/vip.yaml
+    curl -sL kube-vip.io/k3s |  vipAddress=${RKE2_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
   owner: root
   path: /etc/kubevip.sh
   permissions: '0755'
