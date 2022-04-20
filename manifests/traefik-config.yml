@@ -1,0 +1,19 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    image:
+      name: traefik
+      tag: ""
+    ingressRoute:
+      dashboard:
+         enabled: false  
+    additionalArguments:
+      - "--checkNewVersion=false"
+      - "--sendAnonymousUsage=false"
+    service:
+      externalIPs:
+        - $VIP
