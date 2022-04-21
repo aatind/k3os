@@ -3,7 +3,7 @@
 echo "apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
-  name: nfs-provisioner
+  name: $provisionerName
   namespace: kube-system
 spec:
   chart: nfs-subdir-external-provisioner

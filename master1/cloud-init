@@ -25,14 +25,19 @@ write_files:
     export PROVISIONER_NAME=nfs-hd
     export STORAGE_CLASS_NAME=nfs-hd
     curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS1.yaml
-    
+    kubectl apply -f /var/lib/rancher/k3s/server/manifests/NFS1.yaml
+
     #NFS provisioner - SSD
     export NFS_SERVER=192.168.32.32
     export NFS_PATH=/mnt/Flash-Z1/Kubernetes-state/k3s-public
     export RECLAIM_POLICY=Retain
     export PROVISIONER_NAME=nfs-ssd
     export STORAGE_CLASS_NAME=nfs-ssd
-    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS2.yaml
+    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS2.yaml    kubectl apply -f /var/lib/rancher/k3s/server/manifests/NFS1.yaml
+    kubectl apply -f /var/lib/rancher/k3s/server/manifests/NFS2.yaml
+
+    #Set NFS provisioner - SSD as default storage class
+    kubectl patch storageclass CUSTOM_STORAGE_CLASS_NAME -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
   owner: root
   path: /etc/initial-setup.sh
