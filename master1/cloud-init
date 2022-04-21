@@ -37,7 +37,7 @@ write_files:
     kubectl apply -f /var/lib/rancher/k3s/server/manifests/NFS2.yaml
 
     #Set NFS provisioner - SSD as default storage class
-    kubectl patch storageclass CUSTOM_STORAGE_CLASS_NAME -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    kubectl patch storageclass $STORAGE_CLASS_NAME -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
   owner: root
   path: /etc/initial-setup.sh
