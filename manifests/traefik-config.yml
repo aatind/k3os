@@ -7,11 +7,9 @@ spec:
   valuesContent: |-
     image:
       name: traefik
-    ingressRoute:
-      dashboard:
-        enabled: false  
-    additionalArguments:
-     -  --checkNewVersion=false
-     -  --sendAnonymousUsage=false
+      tag: v2.6.1
+    ssl:
+      enabled: true
+      permanentRedirect: false
     service:
       externalIPs: $VIP
