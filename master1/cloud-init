@@ -36,20 +36,6 @@ write_files:
   owner: root
   path: /etc/initial-setup.sh
   permissions: '0755'
-- encoding: ""
-  content: |-
-    #!/bin/bash
-
-    sleep 40
-    kubectl apply -f /var/lib/rancher/k3s/server/manifests/NFS1.yaml
-    kubectl apply -f /var/lib/rancher/k3s/server/manifests/NFS2.yaml
-
-    #Set NFS provisioner - SSD as default storage class
-    export PROVISIONER_NAME=nfs-ssd
-    kubectl patch storageclass $STORAGE_CLASS_NAME -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-  owner: root
-  path: /etc/post-setup.sh
-  permissions: '0755'
 
 k3os:
   
@@ -64,4 +50,3 @@ k3os:
 
 run_cmd:
 - "sh /etc/initial-setup.sh"
-- "sh /etc/post-setup.sh"
