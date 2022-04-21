@@ -22,7 +22,7 @@ write_files:
     export RECLAIM_POLICY=Retain
     export PROVISIONER_NAME=nfs-hd
     export STORAGE_CLASS_NAME=nfs-hd
-    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS1.yaml
+    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/nfs1.yaml
 
     
     #NFS provisioner - SSD
@@ -31,7 +31,7 @@ write_files:
     export RECLAIM_POLICY=Retain
     export PROVISIONER_NAME=nfs-ssd
     export STORAGE_CLASS_NAME=nfs-ssd
-    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS2.yaml
+    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/nfs2.yaml
 
   owner: root
   path: /etc/initial-setup.sh
@@ -42,7 +42,7 @@ k3os:
   k3sArgs:
     - server
     - --cluster-init
-    - --tls-san=k3s-public.systechit.local, 192.168.31.90, 192.168.31.165, 127.0.0.1
+    - --tls-san=k3s-public.systechit.local
     - --flannel-backend=vxlan
     - --disable=local-storage,traefik
     - --token=K106a1fbe374e21d6394faf3de9abe5c425027e92d755e3c2d5fb0998afc47e99d4::server:753441db509fd5dbe9e30a267b6fdb25
