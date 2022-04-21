@@ -9,7 +9,7 @@ write_files:
 - encoding: ""
   content: |-
     #!/bin/bash
-
+    
     mkdir -p '/var/lib/rancher/k3s/server/manifests/'
 
     #Kube-vip configuration
@@ -33,7 +33,10 @@ write_files:
     export PROVISIONER_NAME=nfs-ssd
     export STORAGE_CLASS_NAME=nfs-ssd
     curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS2.yaml
-
+      
+    #Set NFS-provisioner-SSD as default
+    kubectl patch storageclass $PROVISIONER_NAME -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+ 
   owner: root
   path: /etc/initial-setup.sh
   permissions: '0755'
@@ -48,3 +51,4 @@ k3os:
     - --tls-san=k3s-public.systechit.local
     - --tls-san=192.168.31.90
     - --flannel-backend=vxlan
+    - --disable=local-storage

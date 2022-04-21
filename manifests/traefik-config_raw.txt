@@ -1,4 +1,4 @@
-helm apply traefik traefik/traefik \
+helm install traefik traefik/traefik \
 --namespace kube-system \
 --set additional.checkNewVersion=false \
 --set additional.sendAnonymousUsage=false \
