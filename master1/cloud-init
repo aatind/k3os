@@ -42,8 +42,7 @@ k3os:
   k3sArgs:
     - server
     - --cluster-init
-    - --tls-san=k3s-public.systechit.local
-    - --tls-san=192.168.31.90
+    - --tls-san=k3s-public.systechit.local, 192.168.31.90, 192.168.31.165, 127.0.0.1
     - --flannel-backend=vxlan
     - --disable=local-storage,traefik
     - --token=K106a1fbe374e21d6394faf3de9abe5c425027e92d755e3c2d5fb0998afc47e99d4::server:753441db509fd5dbe9e30a267b6fdb25
