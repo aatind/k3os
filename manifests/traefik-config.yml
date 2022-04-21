@@ -10,10 +10,9 @@ spec:
       tag: ""
     ingressRoute:
       dashboard:
-         enabled: false  
+        enabled: false  
     additionalArguments:
-      - "--checkNewVersion=false"
-      - "--sendAnonymousUsage=false"
+     -  --checkNewVersion=false
+     -  --sendAnonymousUsage=false
     service:
-      externalIPs:
-        - $VIP
+      externalIPs: $VIP

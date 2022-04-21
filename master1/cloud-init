@@ -48,3 +48,4 @@ k3os:
     - --tls-san=k3s-public.systechit.local
     - --tls-san=192.168.31.90
     - --flannel-backend=vxlan
+    - --disable=local-storage,traefik
