@@ -10,8 +10,6 @@ write_files:
   content: |-
     #!/bin/bash
 
-    mkdir -p '/var/lib/rancher/k3s/server/manifests/'
-
     #Kube-vip configuration
     export K3S_VIP_IP=192.168.31.90
     export INTERFACE=eth0
@@ -38,8 +36,6 @@ write_files:
   owner: root
   path: /etc/initial-setup.sh
   permissions: '0755'
-
-write_files:
 - encoding: ""
   content: |-
     #!/bin/bash
@@ -51,7 +47,6 @@ write_files:
     #Set NFS provisioner - SSD as default storage class
     export PROVISIONER_NAME=nfs-ssd
     kubectl patch storageclass $STORAGE_CLASS_NAME -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-
   owner: root
   path: /etc/post-setup.sh
   permissions: '0755'
