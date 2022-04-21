@@ -47,7 +47,7 @@ k3os:
     - --cluster-init
     - --tls-san=k3s-public.systechit.local
     - --flannel-backend=vxlan
-    - --disable=local-storage, traefik
+    - --disable=local-storage,traefik
 
 run_cmd:
 - "sh /etc/initial-setup.sh"
