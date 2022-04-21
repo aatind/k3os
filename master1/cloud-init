@@ -34,9 +34,6 @@ write_files:
     export PROVISIONER_NAME=nfs-ssd
     export STORAGE_CLASS_NAME=nfs-ssd
     curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS2.yaml
-    
-    #Set NFS provisioner - SSD as default storage class
-    # kubectl patch storageclass $STORAGE_CLASS_NAME -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
   owner: root
   path: /etc/initial-setup.sh
