@@ -34,8 +34,8 @@ write_files:
     curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/nfs2.yaml
 
     #Traefik config
-    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/traefik-config.yml > /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
-    
+    #curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/traefik-config.yml > /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+
   owner: root
   path: /etc/initial-setup.sh
   permissions: '0755'
@@ -47,7 +47,7 @@ k3os:
     - --cluster-init
     - --tls-san=k3s-public.systechit.local
     - --flannel-backend=vxlan
-    - --disable=local-storage
+    - --disable=local-storage, traefik
 
 run_cmd:
 - "sh /etc/initial-setup.sh"
