@@ -9,8 +9,6 @@ write_files:
 - encoding: ""
   content: |-
     #!/bin/bash
-    
-    mkdir -p '/var/lib/rancher/k3s/server/manifests/'
 
     #Kube-vip configuration
     export K3S_VIP_IP=192.168.31.90
@@ -19,29 +17,28 @@ write_files:
     curl -sL kube-vip.io/k3s | vipAddress=${K3S_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
    
     #NFS provisioner - Spinning-rust
-    export NFS_SERVER=192.168.32.32
+    export NFS_SERVER=192.168.31.31
     export NFS_PATH=/mnt/Z2/Kubernetes-state/k3s-public
     export RECLAIM_POLICY=Retain
     export PROVISIONER_NAME=nfs-hd
     export STORAGE_CLASS_NAME=nfs-hd
-    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS1.yaml
+    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/nfs1.yaml
+
     
     #NFS provisioner - SSD
-    export NFS_SERVER=192.168.32.32
+    export NFS_SERVER=192.168.31.31
     export NFS_PATH=/mnt/Flash-Z1/Kubernetes-state/k3s-public
     export RECLAIM_POLICY=Retain
     export PROVISIONER_NAME=nfs-ssd
     export STORAGE_CLASS_NAME=nfs-ssd
-    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/NFS2.yaml
-      
-    #Set NFS-provisioner-SSD as default
-    kubectl patch storageclass $PROVISIONER_NAME -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
- 
+    curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/NFS | nfsServer=${NFS_SERVER} nfsPath=${NFS_PATH} reclaimPolicy=${RECLAIM_POLICY} provisionerName=${PROVISIONER_NAME} storageClassName=${STORAGE_CLASS_NAME} sh | sudo tee /var/lib/rancher/k3s/server/manifests/nfs2.yaml
+
+    #Traefik config
+    #curl -sL https://raw.githubusercontent.com/aatind/k3os/main/manifests/traefik-config.yml > /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+
   owner: root
   path: /etc/initial-setup.sh
   permissions: '0755'
-run_cmd:
-- "sh /etc/initial-setup.sh"
 
 k3os:
   
@@ -49,6 +46,8 @@ k3os:
     - server
     - --cluster-init
     - --tls-san=k3s-public.systechit.local
-    - --tls-san=192.168.31.90
     - --flannel-backend=vxlan
-    - --disable=local-storage
+    - --disable=local-storage,traefik
+
+run_cmd:
+- "sh /etc/initial-setup.sh"

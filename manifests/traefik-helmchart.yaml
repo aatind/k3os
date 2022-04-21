@@ -1,0 +1,6 @@
+helm upgrade --install traefik traefik/traefik \
+--namespace kube-system \
+--set additional.checkNewVersion=false \
+--set additional.sendAnonymousUsage=false \
+--set dashboard.ingressRoute=false \
+--set service.externalIPs=$VIP
