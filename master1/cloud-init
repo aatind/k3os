@@ -17,7 +17,7 @@ write_files:
     curl -sL kube-vip.io/k3s | vipAddress=${K3S_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
    
     #NFS provisioner - Spinning-rust
-    export NFS_SERVER=192.168.32.32
+    export NFS_SERVER=192.168.31.31
     export NFS_PATH=/mnt/Z2/Kubernetes-state/k3s-public
     export RECLAIM_POLICY=Retain
     export PROVISIONER_NAME=nfs-hd
@@ -26,7 +26,7 @@ write_files:
 
     
     #NFS provisioner - SSD
-    export NFS_SERVER=192.168.32.32
+    export NFS_SERVER=192.168.31.31
     export NFS_PATH=/mnt/Flash-Z1/Kubernetes-state/k3s-public
     export RECLAIM_POLICY=Retain
     export PROVISIONER_NAME=nfs-ssd
