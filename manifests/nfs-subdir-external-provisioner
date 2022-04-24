@@ -3,7 +3,8 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
   --namespace nfs-provisioner \
   --set nfs.server=192.168.31.31 \
   --set nfs.path=/mnt/Flash-Z1/Kubernetes-state/k3s-public \
-  --set storageClass.name=nfs-ssd \
+  --set storageClass.name=nfs-ssd-v4 \
   --set storageClass.reclaimPolicy=Retain \
   --set storageClass.defaultClass=true \
+  --set nfs.mountOptions='nfsvers=4' \
   --set storageClass.accessModes=ReadWriteMany
