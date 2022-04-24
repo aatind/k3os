@@ -14,5 +14,4 @@ spec:
     nfs.path: $nfsPath
     storageClass.name: $storageClassName
     storageClass.reclaimPolicy: $reclaimPolicy
-    storageClass.provisionerName: $provisionerName
-    storageClass.defaultClass: true"
+    storageClass.provisionerName: $provisionerName"
