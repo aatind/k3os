@@ -1,0 +1,9 @@
+helm install nfs-provisioner stable/nfs-client-provisioner \
+--create namespace \
+--namespace nfs-provisioner \
+--set storageClass.reclaimPolicy=Retain \
+--set storageClass.defaultClass=true \ 
+--set storageClass.name=nfs-ssd \
+--set nfs.mountOptions='nfsvers=4' \
+--set nfs.server=192.168.31.31 \
+--set nfs.path=/mnt/Flash-Z1/Kubernetes-state/k3s-public

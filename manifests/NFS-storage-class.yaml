@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-ssd
+  labels:
+    name: nfs # name can be anything
+spec:
+  storageClassName: nfs-ssd # same storage class as pvc
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.31.31 # ip addres of nfs server
+    path: "/mnt/Flash-Z1/Kubernetes-state/k3s-public" # path to directory
