@@ -2,7 +2,7 @@
 
 ssh_authorized_keys:
 - github:aatind
-hostname: k3os-public-worker2
+hostname: k3os-public-w-ryzen
 boot_cmd:
 - mkdir -p /var/lib/nfs/sm
 - rc-update add rpc.statd
@@ -10,4 +10,4 @@ boot_cmd:
 
 k3os:
   server_url: https://k3s-public.systechit.local:6443
-  token: K106a42f3e8d3a7f988feada07677d049d5319d1bc685bc2876b8968a6aef6dce77::server:2e07567963ed3651e93a5a784429542e 
+  token: K10f0d6109f768c99a693cbeb0c93650f79fff645cdf4b0a21b6a6dba3da210b3e8::server:eeecef415e2f7e099df1e760bd533bd1 
