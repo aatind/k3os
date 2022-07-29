@@ -2,7 +2,7 @@
 
 ssh_authorized_keys:
 - github:aatind
-hostname: k3os-public-worker-ryzen1
+hostname: k3os-public-worker1
 boot_cmd:
 - mkdir -p /var/lib/nfs/sm
 - rc-update add rpc.statd
